@@ -1,37 +1,69 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Calendar;
+using ToWord;
+using System;
 
-namespace Calendar.TestTools
+namespace ToWord.Test
 {
   [TestClass]
-  public class LeapYearTests
+  public class WordFromNumTests
   {
     [TestMethod]
-    public void IsLeapYear_NumberDivisbleByFour_True()
+    public void WordConstructor_CreatesInstance_WordFromNum()
     {
-       LeapYear testLeapYear = new LeapYear();
-      Assert.AreEqual(true, testLeapYear.IsLeapYear(2012));
+      int two = 2;
+      WordFromNum newObject = new WordFromNum(two);
+      Assert.AreEqual(typeof(WordFromNum), newObject.GetType());
     }
 
-      [TestMethod]
-    public void IsLeapYear_NumberNotDivisibleByFour_False()
+    [TestMethod]
+    public void GetNumber_ReturnNumber_Number()
     {
-      LeapYear testLeapYear = new LeapYear();
-      Assert.AreEqual(false, testLeapYear.IsLeapYear(1999));
+      int two = 2;
+      WordFromNum newObject = new WordFromNum(two);
+      int newNumber = newObject.Number;
+      Assert.AreEqual(two, newNumber);
     }
 
-        [TestMethod]
-    public void IsLeapYear_MultiplesOfOneHundred_False()
+    [TestMethod]
+    public void AddWord_AddsWordToField_Word()
     {
-      LeapYear testLeapYear = new LeapYear();
-      Assert.AreEqual(false, testLeapYear.IsLeapYear(1900));
+
+      WordFromNum newObject = new WordFromNum(2);
+      string word = "million";
+      newObject.AddWord(word);
+      string result = newObject.Word;
+
+      Assert.AreEqual(word, result);
     }
 
-        [TestMethod]
-    public void IsLeapYear_MultiplesOfFourHundred_True()
+    [TestMethod]
+    public void ReadSingleDigit_ReturnsAString_String()
     {
-      LeapYear testLeapYear = new LeapYear();
-      Assert.AreEqual(true, testLeapYear.IsLeapYear(2000));
+
+      WordFromNum newObject = new WordFromNum(1);
+      string word = "one";
+      string result = newObject.ReadSingleDigit();
+
+      Assert.AreEqual(word, result);
     }
+
+    [TestMethod]
+    public void ReadTeenDigit_ReturnString_String()
+    {
+      WordFromNum newObject = new WordFromNum(12);
+      string word = "twelve";
+      string result = newObject.ReadTeenDigit();
+      Assert.AreEqual(word, result);
+    }
+
+    [TestMethod]
+    public void ReadDoubleDigit_ReturnString_String()
+    {
+      WordFromNum newObject = new WordFromNum(2);
+      string word = "twenty";
+      string result = newObject.ReadDoubleDigit();
+      Assert.AreEqual(word, result);
+    }
+    
   }
 }

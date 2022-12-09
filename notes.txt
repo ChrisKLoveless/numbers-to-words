@@ -1,0 +1,13 @@
+Convert a Number to Word form
+If a number has 2 indexes and is greater than twelve, but less than 20 add "teen" to the end of the Word
+If a number has 2 indexes and the first index is a "2" -> add "twenty" to the front of the Word
+If a number has 3 indexes and the first index is a "3" -> add "thirty" to the front of the word
+etc... until the inputted number contains more than 2 indexes
+
+int count = 0;
+for(int i = 0; i < user.input(); i++){
+  count++;
+}
+if(count > 19 && count < 30){
+  output will contain "twenty"
+}
